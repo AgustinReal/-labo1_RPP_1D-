@@ -30,84 +30,57 @@ int pedirEntero(int* entero, char* mensaje, char* mensajeError, int min, int max
 
 	return retorno;
 }
-int validarSoloEntero(int* numero, char* mensaje, char* errorMensaje, int min, int max)
+int validarEntero(char pEnteroAValidar[])
 {
-	int retorno=1;
-	char auxCadenaNumero[200];
-	int auxNumero;
-	int banderaEstado;
+    int todoOk = 1;
 
-	if(numero!=NULL && mensaje!=NULL && min<max)
-	{
-		banderaEstado=conseguirCadebaNumero(mensaje, auxCadenaNumero);
-		auxNumero=atoi(auxCadenaNumero);
+    if(strlen(pEnteroAValidar) > 0)
+    {
+        for(int i = 0;i< strlen(pEnteroAValidar);i++)
+        {
+            if(isdigit(pEnteroAValidar[i]) == 0)
+            {
+                if(i == 0 && pEnteroAValidar[0] == '-')
+                {
+                    todoOk = 1;
 
-		while(banderaEstado!=0 || auxNumero<min || auxNumero>max)
-		{
-			banderaEstado=conseguirCadebaNumero(errorMensaje, auxCadenaNumero);
-			auxNumero=atoi(auxCadenaNumero);
-		}
+                }
+                else
+                {
+                    todoOk = 0;
+                }
+            }
+        }
+    }
+    else
+    {
+        todoOk=0;
+    }
 
-		*numero=auxNumero;
-
-		retorno=0;
-	}
-
-	return retorno;
+    return todoOk;
 }
-int esNumero(char* cadena)
+int ingresoEntero(int* enteroValidado, char mensaje[], char mensajeError[], int min, int max)
 {
-	int retorno=0;
-	int i;
-	int len;
+    char auxEntero[150];
+    int todoOk = 0;
 
-	if(cadena != NULL)
-	{
-		len = strlen(cadena);
-		for(i=0; i<len; i++)
-		{
-			if(cadena[i]<48 || cadena[i]>57)
-			{
-				retorno = 1;
-				break;
-			}
-		}
-	}
+    if(enteroValidado != NULL && mensaje != NULL && mensajeError != NULL && min < max)
+    {
+        printf("%s",mensaje);
+        fflush(stdin);
+        gets(auxEntero);
 
-	return retorno;
-}
-int conseguirCadena(char* mensaje, char* cadena)
-{
-	int retorno=-1;
-	char auxCadena[200];
+        while(validarEntero(auxEntero) == 0 ||  atoi(auxEntero) > max  || atoi(auxEntero) < min)
+        {
+            printf("%s", mensajeError);
+            fflush(stdin);
+            gets(auxEntero);
+        }
 
-	if(mensaje != NULL && cadena != NULL)
-	{
-		printf("%s", mensaje);
-		fflush(stdin);
-		scanf("%[^\n]", auxCadena);
-
-		strcpy(cadena, auxCadena);
-		retorno=0;
-	}
-
-	return retorno;
-}
-int conseguirCadebaNumero(char* message, char* ingreso)
-{
-	int retorno=-1;
-	char auxIngreso[200];
-
-	if(message != NULL && ingreso != NULL)
-	{
-		if(conseguirCadena(message, auxIngreso)==0 && esNumero(auxIngreso)==0)
-		{
-			strcpy(ingreso, auxIngreso);
-			retorno=0;
-		}
-	}
-
-	return retorno;
+        *enteroValidado = atoi(auxEntero);
+        todoOk = 1;
+    }
+    return todoOk;
 }
 int SoloLetras(char* palabra)
 {

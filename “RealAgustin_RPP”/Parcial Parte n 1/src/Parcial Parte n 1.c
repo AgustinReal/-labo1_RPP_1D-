@@ -66,11 +66,11 @@ int main(void)
 	Duenio_agregarDuenio(listaDuenio, largoPerritos, 4, "Tomas", 1121234335);
 	Duenio_agregarDuenio(listaDuenio, largoPerritos, 5, "Lucas", 1123456523);
 
-   Duenio_imprimirListaDuenio(listaDuenio, largoPerritos);
+    Duenio_imprimirListaDuenio(listaDuenio, largoPerritos);
 
 	do
 	{
-			pedirEntero(&option, "---------------------------------------------------------------------------------\n"
+		ingresoEntero(&option, "---------------------------------------------------------------------------------\n"
 								 "1.RESERVAR ESTADIA.\n"
 								 "2.MODIFICAR ESTADIA.\n"
 					             "3.CANCELAR ESTADÍA.\n"
@@ -102,8 +102,8 @@ int main(void)
 				auxEstadoPosicionVacio=EstadiaDiaria_buscarEspacioLibre(listaClientesEstadia, largoListaClientes);
 				if(auxEstadoPosicionVacio!=-1)
 				{
-					validarSoloEntero(&auxEstadia.idDuenio, "Ingrese la id del duenio de la estadia(1-3000): ", "Error. Ingrese la id del duenio de la estadia(1-3000):", minIdDuenio, maxIdDuenio);
-					validarSoloEntero(&auxEstadia.idPerro, "Ingrese la id del perro del cliente de la estadia(7000-70000): ", "Error. Ingrese la id del perro del cliente de la estadia(7000-70000):", minIdPerro, maxIdPerro);
+					ingresoEntero(&auxEstadia.idDuenio, "Ingrese la id del duenio de la estadia(1-3000): ", "Error. Ingrese la id del duenio de la estadia(1-3000):", minIdDuenio, maxIdDuenio);
+					ingresoEntero(&auxEstadia.idPerro, "Ingrese la id del perro del cliente de la estadia(7000-70000): ", "Error. Ingrese la id del perro del cliente de la estadia(7000-70000):", minIdPerro, maxIdPerro);
 					Fecha_pedirVerificarFecha(&auxEstadia.fecha);
 					auxEstadia.id=contadorId;
 
@@ -132,11 +132,12 @@ int main(void)
 					printf("El sistema esta lleno vuelva en otras instancias\n");
 				}
 				system("pause");
+				option=0;
 				break;
 			case 2:
 				if(contadorClientesActivo>0)
 				{
-					validarSoloEntero(&almacenarAuxIdModificar, "Cual es id que desea modifcar: ", "Error. Cual es id que desea modifcar: ", minIdcontador, maxIdcontador);
+					ingresoEntero(&almacenarAuxIdModificar, "Cual es id que desea modifcar: ", "Error. Cual es id que desea modifcar: ", minIdcontador, maxIdcontador);
 					auxBuscarIndice=EstadiaDiaria_buscarPorId(listaClientesEstadia, largoListaClientes, almacenarAuxIdModificar);
 					if(listaClientesEstadia[auxBuscarIndice].estadoEstadiaVacio==0)
 					{
@@ -146,7 +147,7 @@ int main(void)
 						do
 						{
 
-							pedirEntero(&option,"--------------------------------------------------------------------------------\n"
+							ingresoEntero(&option,"--------------------------------------------------------------------------------\n"
 												"1-MODIFICAR El teléfono de contacto.\n"
 												"2-MODIFICAR El perro.\n"
 												"3-SALIR.\n"
@@ -161,10 +162,10 @@ int main(void)
 							switch(option)
 							{
 								case 1:
-									validarSoloEntero(&listaDuenio[auxIdDuenio].telefono, "Ingrese el nuevo numero de telefono del cliente de la estadia: ", "Error.Ingrese el nuevo numero de telefono del cliente de la estadia: ", minNumeroTelefono, maxNumeroTelefono);
+									ingresoEntero(&listaDuenio[auxIdDuenio].telefono, "Ingrese el nuevo numero de telefono del cliente de la estadia: ", "Error.Ingrese el nuevo numero de telefono del cliente de la estadia: ", minNumeroTelefono, maxNumeroTelefono);
 									break;
 								case 2:
-									validarSoloEntero(&listaClientesEstadia[auxBuscarIndice].idPerro, "Ingrese la nueva id del perro del cliente de la estadia: ", "Error. Ingrese la nueva id del perro del cliente de la estadia:", minIdPerro, maxIdPerro);
+									ingresoEntero(&listaClientesEstadia[auxBuscarIndice].idPerro, "Ingrese la nueva id del perro del cliente de la estadia: ", "Error. Ingrese la nueva id del perro del cliente de la estadia:", minIdPerro, maxIdPerro);
 									break;
 
 							}
@@ -240,7 +241,7 @@ int main(void)
 					printf("No se puedo mostrar la lista de perritos...\n");
 				}
 				break;
-			/*case 8:
+			case 8:
 				if(contadorClientesActivo>0)
 				{
 					EstadiaDiaria_mostrarTodasEstadiasPorPerro(listaClientesEstadia, listaPerritos, listaDuenio, largoListaClientes , largoPerritos, largoDuenio);
@@ -249,7 +250,7 @@ int main(void)
 				{
 					printf("No se puedo mostrar la lista de perritos...\n");
 				}
-				break;*/
+				break;
 			}
 
 		}while(option!=9);

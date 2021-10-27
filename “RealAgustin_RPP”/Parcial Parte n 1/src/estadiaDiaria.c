@@ -72,7 +72,7 @@ int EstadiaDiaria_eliminarPerroEstadia(sEstadiaDiaria listaEstadia[], sDuenio li
 
 	if(listaEstadia!=NULL && listaDuenio!=NULL)
 	{
-		validarSoloEntero(&idIngresado,"Ingrese el ID del cliente de la estadia a borrar de (100000-1000000): ", "Reingrese el ID del cliente de la estadia a borrar de (100000-1000000): ", 100000, 1000000);
+		ingresoEntero(&idIngresado,"Ingrese el ID del cliente de la estadia a borrar de (100000-1000000): ", "Reingrese el ID del cliente de la estadia a borrar de (100000-1000000): ", 100000, 1000000);
 		index=EstadiaDiaria_buscarPorId(listaEstadia, len, idIngresado);
 
 		if(index!=-1)
@@ -171,6 +171,49 @@ int EstadiaDiaria_mostrarPerroMasEstadia(sEstadiaDiaria listaEstadia[], sPerrito
 	}
 
 	return retorno;
+}
+int EstadiaDiaria_mostrarTodasEstadiasPorPerro(sEstadiaDiaria listEstadias[], sPerritos listaPerro[], sDuenio listaDunio[], int length ,int lengthPerro, int lengthDuenio)
+{
+
+    int retorno =-1;
+    int auxIdPerro;
+    sDuenio auxDuenio;
+    int auxIndex;
+
+    if(listEstadias!=NULL && listaPerro!=NULL && listaDunio!=NULL)
+    {
+        for (int i=0;i<lengthPerro;i++)
+        {
+            if(listaPerro[i].estadoVacio==0)
+            {
+                printf("\n");
+                printf("-----------------------------------------------------------------------------------------------------------------\n");
+                auxIdPerro=listaPerro[i].id;
+                Perritos_mostrarDatos();
+                Perritos_mostrarUnPerrito(listaPerro[i]);
+                printf("\n");
+
+                for(int j=0; j<length; j++)
+                {
+                    if(listEstadias[j].estadoEstadiaVacio==0 && listEstadias[j].idPerro==auxIdPerro)
+                    {
+                      printf("Fecha de estadia :");
+                      Fecha_imprimirFecha(listEstadias[j].fecha);
+                      printf("    |Id Duenio: %d", listEstadias[i].idDuenio);
+
+                      auxIndex=Duenio_buscarPorId(listaDunio, lengthDuenio, listEstadias[j].idDuenio);
+                      auxDuenio=listaDunio[auxIndex];
+                      printf("    | nombre Duenio: %s", auxDuenio.nombre);
+                      printf("    | numero de contacto: %d\n", auxDuenio.telefono);
+
+                    }
+                retorno=1;
+                }
+
+            }
+        }
+    }
+    return retorno;
 }
 void EstadiaDiaria_mostrarUnaEstadia(sEstadiaDiaria estadia, sDuenio duenio)
 {

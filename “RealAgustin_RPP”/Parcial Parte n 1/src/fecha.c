@@ -10,6 +10,7 @@
 #include "fecha.h"
 #include "inputs.h"
 #include <ctype.h>
+#include <conio.h>
 
 int Fecha_pedirVerificarFecha(sFecha* fecha)
 {
@@ -21,9 +22,9 @@ int Fecha_pedirVerificarFecha(sFecha* fecha)
 
 	if(fecha!=NULL)
 	{
-		validarSoloEntero(&diaAux, "Ingrese el dia para la estadia del perrito: ", "Error. Ingrese el dia para la estadia del perrito: ", 1, 31);
-		validarSoloEntero(&mesAux, "Ingrese el mes para la estadia del perrito: ", "Error. Ingrese el mes para la estadia del perrito: ", 1, 12);
-		validarSoloEntero(&anioAux, "Ingrese el anio para la estadia del perrito: ", "Error. Ingrese el anio para la estadia del perrito: ", 2020, 2101);
+		ingresoEntero(&diaAux, "Ingrese el dia para la estadia del perrito: ", "Error. Ingrese el dia para la estadia del perrito: ", 1, 31);
+		ingresoEntero(&mesAux, "Ingrese el mes para la estadia del perrito: ", "Error. Ingrese el mes para la estadia del perrito: ", 1, 12);
+		ingresoEntero(&anioAux, "Ingrese el anio para la estadia del perrito: ", "Error. Ingrese el anio para la estadia del perrito: ", 2020, 2101);
 
 		if(mesAux>0 && mesAux<12)
 		{

@@ -79,8 +79,6 @@ int SoloLetras(char* palabra);
  * @return retorna 1 o -1: "1" si pudo realizar la funcion o "-1" si no pudo realizar la funccion.
  */
 int acomodarCadenaIngresada(char cadena[]);
-int validarSoloEntero(int* numero, char* mensaje, char* errorMensaje, int min, int max);
-int esNumero(char* cadena);
-int conseguirCadena(char* mensaje, char* cadena);
-int conseguirCadebaNumero(char* message, char* ingreso);
+int ingresoEntero(int* enteroValidado, char mensaje[], char mensajeError[], int min, int max);
+int validarEntero(char pEnteroAValidar[]);
 #endif /* INPUTS_H_ */

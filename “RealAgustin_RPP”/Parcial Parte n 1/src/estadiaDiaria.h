@@ -122,6 +122,7 @@ int EstadiaDiaria_orderEstadiaPerrito(sEstadiaDiaria listaEstadia[],sDuenio list
  *
  * @return retorna 1 o -1: "1" si pudo realizar la funcion o "-1" si no pudo realizar la funccion.
  */
-int EstadiaDiaria_imprimirListaEstadiaDiariaEstadiaDiaria_imprimirListaEstadiaDiaria(sEstadiaDiaria listaEstadia[], sDuenio listaDuenio[], int length, int lenDuenio);
-//int EstadiaDiaria_mostrarTodasEstadiasPorPerro(sEstadiaDiaria listEstadias[], sPerritos listaPerro[], sDuenio listaDunio[], int length ,int lengthPerro, int lengthDuenio);
+int EstadiaDiaria_mostrarPerroMasEstadia(sEstadiaDiaria listaEstadia[], sPerritos listaPerritos[], int len, int lenPerritos);
+int EstadiaDiaria_imprimirListaEstadiaDiaria(sEstadiaDiaria listaEstadia[], sDuenio listaDuenio[], int length, int lenDuenio);
+int EstadiaDiaria_mostrarTodasEstadiasPorPerro(sEstadiaDiaria listEstadias[], sPerritos listaPerro[], sDuenio listaDunio[], int length ,int lengthPerro, int lengthDuenio);
 #endif /* ESTADIADIARIA_H_ */
