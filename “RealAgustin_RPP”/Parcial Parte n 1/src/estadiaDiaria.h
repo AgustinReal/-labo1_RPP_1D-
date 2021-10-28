@@ -31,7 +31,7 @@ typedef struct
  * @fn int EstadiaDiaria_iniciarLista(sEstadiaDiaria[], int)
  * @brief Esta funcion recorre la "lista de clientes de perro" para busacar el 1er  espacio libre mediante un bucle for.
  *
- * @param  lista: Array Estadia
+ * @param lista: Array Estadia
  * @param len: Tamaño array
  *
  * @return retorna 1 o -1: "1" si pudo realizar la funcion o "-1" si no pudo realizar la funccion.
@@ -62,7 +62,7 @@ int EstadiaDiaria_agregarEstadiaDiaria(sEstadiaDiaria lista[], int len, int id, 
 int EstadiaDiaria_buscarEspacioLibre(sEstadiaDiaria lista[], int len);
 /**
  * @fn int EstadiaDiaria_buscarPorId(sEstadiaDiaria[], int, int)
- * @brief Esta funcion elimina un cliente ya ingresado, pregunta la id a eliminar y lo elimina,
+ * @brief Esta funcion elimina o busca un cliente ya ingresado, pregunta la id a eliminar y lo elimina,
  * dando de bajo a esa cliente.
  *
  * @param lista: array Estadia.
