@@ -79,6 +79,26 @@ int SoloLetras(char* palabra);
  * @return retorna 1 o -1: "1" si pudo realizar la funcion o "-1" si no pudo realizar la funccion.
  */
 int acomodarCadenaIngresada(char cadena[]);
+/**
+ * @fn int ingresoEntero(int*, char[], char[], int, int)
+ * @brief Esta funcion: Permite pedir un entero "un numero", darle un msj al usuario con error o sin el y
+ * tambien permite darle un rango de numero que puede ingresar desde minimo o maximo.
+ *
+ * @param enteroValidado: Numero que se ingresa lo y guarda en esta variable entero, para usarlo dsp.
+ * @param mensaje: Le pedimos algo al usuario.
+ * @param mensajeError: Lo que le pedimos al usuario le decimos que lo reingrese.
+ * @param min: Es el minimo entero que puede ingresar el usuario.
+ * @param max: Es el maximo entero que puede ingresar el usuario.
+ * @return retorna 1 o 0: "1" si pudo realizar la funcion o "0" si no pudo realizar la funccion.
+ */
 int ingresoEntero(int* enteroValidado, char mensaje[], char mensajeError[], int min, int max);
+/**
+ * @fn int validarEntero(char[])
+ * @brief Esta funcion valida si el numero o el entero ingresado sea un numero, si ingresa un letra o otro tipo de caracter
+ * no lo dejara ingresar.
+ *
+ * @param pEnteroAValidar: Es el parametro que usaremos para verificar que sea un numero.
+ * @return retorna 1 o 0: "1" si pudo realizar la funcion o "0" si no pudo realizar la funccion.
+ */
 int validarEntero(char pEnteroAValidar[]);
 #endif /* INPUTS_H_ */

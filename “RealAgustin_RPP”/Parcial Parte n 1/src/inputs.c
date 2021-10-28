@@ -32,55 +32,54 @@ int pedirEntero(int* entero, char* mensaje, char* mensajeError, int min, int max
 }
 int validarEntero(char pEnteroAValidar[])
 {
-    int todoOk = 1;
+    int retorno=1;
 
-    if(strlen(pEnteroAValidar) > 0)
+    if(strlen(pEnteroAValidar)>0)
     {
-        for(int i = 0;i< strlen(pEnteroAValidar);i++)
+        for(int i=0;i<strlen(pEnteroAValidar);i++)
         {
-            if(isdigit(pEnteroAValidar[i]) == 0)
+            if(isdigit(pEnteroAValidar[i])==0)
             {
-                if(i == 0 && pEnteroAValidar[0] == '-')
+                if(i==0 && pEnteroAValidar[0]=='-')
                 {
-                    todoOk = 1;
-
+                	retorno=1;
                 }
                 else
                 {
-                    todoOk = 0;
+                	retorno=0;
                 }
             }
         }
     }
     else
     {
-        todoOk=0;
+    	retorno=0;
     }
 
-    return todoOk;
+    return retorno;
 }
 int ingresoEntero(int* enteroValidado, char mensaje[], char mensajeError[], int min, int max)
 {
     char auxEntero[150];
-    int todoOk = 0;
+    int retorno=0;
 
-    if(enteroValidado != NULL && mensaje != NULL && mensajeError != NULL && min < max)
+    if(enteroValidado!=NULL && mensaje!=NULL && mensajeError!=NULL && min<max)
     {
         printf("%s",mensaje);
         fflush(stdin);
         gets(auxEntero);
 
-        while(validarEntero(auxEntero) == 0 ||  atoi(auxEntero) > max  || atoi(auxEntero) < min)
+        while(validarEntero(auxEntero)==0 ||  atoi(auxEntero)>max  || atoi(auxEntero)<min)
         {
             printf("%s", mensajeError);
             fflush(stdin);
             gets(auxEntero);
         }
 
-        *enteroValidado = atoi(auxEntero);
-        todoOk = 1;
+        *enteroValidado=atoi(auxEntero);
+        retorno=1;
     }
-    return todoOk;
+    return retorno;
 }
 int SoloLetras(char* palabra)
 {

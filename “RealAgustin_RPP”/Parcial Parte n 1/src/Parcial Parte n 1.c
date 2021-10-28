@@ -66,7 +66,7 @@ int main(void)
 	Duenio_agregarDuenio(listaDuenio, largoPerritos, 4, "Tomas", 1121234335);
 	Duenio_agregarDuenio(listaDuenio, largoPerritos, 5, "Lucas", 1123456523);
 
-    Duenio_imprimirListaDuenio(listaDuenio, largoPerritos);
+
 
 	do
 	{
@@ -131,8 +131,9 @@ int main(void)
 				{
 					printf("El sistema esta lleno vuelva en otras instancias\n");
 				}
-				system("pause");
-				option=0;
+				printf("Presione un boton para continuar...\n");
+				getchar();
+
 				break;
 			case 2:
 				if(contadorClientesActivo>0)
