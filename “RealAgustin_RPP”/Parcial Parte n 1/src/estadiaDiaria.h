@@ -88,7 +88,7 @@ int EstadiaDiaria_buscarPorId(sEstadiaDiaria lista[], int len, int id);
 int EstadiaDiaria_eliminarPerroEstadia(sEstadiaDiaria listaEstadia[], sDuenio listaDuenio[], int len, int id, int lenDuenio);
 /**
  * @fn int ConfirmarSioNoEstadiaDiaria(char* mensaje)
- *@brief Esta funcion se usa para confirmar, el si o no de un cliente en este caso.
+ * @brief Esta funcion se usa para confirmar, el si o no de un cliente en este caso.
  *
  * @param mensaje: Lo que se mostrara en pantalla al usuario "algo que mostrar".
  * @return retorna 0 o -1: "0" si pudo realizar la funcion o "-1" si no pudo realizar la funccion.
@@ -155,4 +155,17 @@ int EstadiaDiaria_mostrarPerroMasEstadia(sEstadiaDiaria listaEstadia[], sPerrito
  * @return retorna 1 o -1: "1" si pudo realizar la funcion o "-1" si no pudo realizar la funccion.
  */
 int EstadiaDiaria_mostrarTodasEstadiasPorPerro(sEstadiaDiaria listEstadias[], sPerritos listaPerro[], sDuenio listaDunio[], int length ,int lengthPerro, int lengthDuenio);
+/**
+ * @fn int EstadiaDiaria_cantidadDuenioSellamanAlanYTieneEstadia(sEstadiaDiaria[], sDuenio[], int, int, int*)
+ * @brief Esta funcion recorre la lista de los nombres de los duenios y cuenta solamente los que se llaman Alan.
+ *
+ * @param listaEstadias: Array de estadia
+ * @param listaDunio: Array de duenio
+ * @param length:Tamanio de la lista del array estadia
+ * @param lengthDuenio:Tamanio de la lista del array estadia
+ * @param auxContadorAlan: donde guarda ka cantidad de nombres de Alan.
+ * @return retorna 1 o -1: "1" si pudo realizar la funcion o "-1" si no pudo realizar la funccion.
+ */
+int EstadiaDiaria_cantidadDuenioSellamanAlanYTieneEstadia(sEstadiaDiaria listaEstadias[],  sDuenio listaDunio[], int length , int lengthDuenio, int* auxContadorAlan);
+int EstadiaDiaria_ListadoEstadiasRealizadasLLamadaLuciaYFechaSegundaQuiencenaNoviembre(sEstadiaDiaria listaEstadias[],  sDuenio listaDunio[], int length , int lengthDuenio, sFecha fecha);
 #endif /* ESTADIADIARIA_H_ */

@@ -151,7 +151,6 @@ int Perritos_imprimirPerritos(sPerritos lista[], int length)
 
 	if(lista!=NULL)
 	{
-		printf("\nLista de perritos:\n\n %-10s %-20s %-20s %-20s\n", "Id", "nombre", "raza", "edad");
 
 		for(int i=0;i<length;i++)
 		{

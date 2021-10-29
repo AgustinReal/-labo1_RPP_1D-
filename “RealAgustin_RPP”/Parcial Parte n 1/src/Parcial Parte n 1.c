@@ -31,7 +31,9 @@
 #define largoPerritos 1000
 #define largoDuenio 1000
 #define largoListaClientes 1000
-
+#define cantidadCharsPerritos 21
+#define minEdadPerrito 1
+#define maxEdadPerrito 15
 int main(void)
 {
 	setbuf(stdout, NULL);
@@ -39,24 +41,31 @@ int main(void)
 	sDuenio listaDuenio[largoDuenio];
 	sEstadiaDiaria auxEstadia;
 	sEstadiaDiaria listaClientesEstadia[largoListaClientes];
+	sPerritos auxPerrito;
 	sPerritos listaPerritos[largoPerritos];
 	int auxIdDuenio;
 	int option;
 	int auxEstadoPosicionVacio;
 	int contadorClientesActivo=0;
+	int contadorPerritosActivo=0;
 	int contadorId=100000;
+	int contadorIdPerritos=7003;
 	char afirmacion;
 	int almacenarAuxIdModificar;
 	int auxBuscarIndice;
 	int contadorPerritos=0;
 	float promedioPerritos;
 	float acumuladorEdadesPerritos=0;
+	int auxEstadoPosicionVacioPerro;
+	int contadorAlan=0;
 
 
 	Perritos_iniciarLista(listaPerritos, largoPerritos);
 	Perritos_agregarPerrito(listaPerritos, largoPerritos, 7000, "Lobo","Sharpie",2);
 	Perritos_agregarPerrito(listaPerritos, largoPerritos, 7001, "Sheila","Golden",12);
 	Perritos_agregarPerrito(listaPerritos, largoPerritos, 7002, "Reina","Galgo,",13);
+	Perritos_agregarPerrito(listaPerritos, largoPerritos, 7003, "Poppy","Galgo,",8);
+	Perritos_agregarPerrito(listaPerritos, largoPerritos, 7004, "Garen","Pastor",2);
 	EstadiaDiaria_iniciarLista(listaClientesEstadia, largoListaClientes);
 
 	Duenio_iniciarLista(listaDuenio, largoDuenio);
@@ -64,7 +73,7 @@ int main(void)
 	Duenio_agregarDuenio(listaDuenio, largoPerritos, 2, "Carlos", 1167345252);
 	Duenio_agregarDuenio(listaDuenio, largoPerritos, 3, "Alan", 1132233445);
 	Duenio_agregarDuenio(listaDuenio, largoPerritos, 4, "Tomas", 1121234335);
-	Duenio_agregarDuenio(listaDuenio, largoPerritos, 5, "Lucas", 1123456523);
+	Duenio_agregarDuenio(listaDuenio, largoPerritos, 5, "Lucia", 1123456523);
 
 
 
@@ -79,7 +88,10 @@ int main(void)
 								 "6.Promedio de edad de los perros.\n"
 								 "7.El perro que tiene más estadías reservadas.\n"
 								 "8.Listado de perros con sus estadías diarias reservadas.\n"
-								 "9.SALIR\n"
+								 "9.ALTA DE PERRO.\n"
+								 "10.LA CANTIDAD DE DUENIOS QUE SE LLAMAN ALAN Y QUE, A SU VEZ, TIENEN AL MENOS UN ESTADIA RESERVADA.\n"
+								 "11.LISTADO DE ESTADIAS REALIZADAS POR DUENIOS QUE SE LLAMAN LUCIA Y CUYA FECHA DE RESERVA ES DURANTE LA SEGUNDA QUINCENA DE NOVIEMBRE 2021.\n"
+								 "12.SALIR\n"
 								 "---------------------------------------------------------------------------------\n"
 								 "Ingrese una opcion: ",
 
@@ -91,9 +103,12 @@ int main(void)
 								 "6.Promedio de edad de los perros.\n"
 								 "7.El perro que tiene más estadías reservadas.\n"
 								 "8.Listado de perros con sus estadías diarias reservadas.\n"
-								 "9.SALIR\n"
+								 "9.ALTA DE PERRO.\n"
+								 "10.LA CANTIDAD DE DUENIOS QUE SE LLAMAN ALAN Y QUE, A SU VEZ, TIENEN AL MENOS UN ESTADIA RESERVADA.\n"
+								 "11.LISTADO DE ESTADIAS REALIZADAS POR DUENIOS QUE SE LLAMAN LUCIA Y CUYA FECHA DE RESERVA ES DURANTE LA SEGUNDA QUINCENA DE NOVIEMBRE 2021.\n"
+								 "12.SALIR\n"
 								 "---------------------------------------------------------------------------------\n"
-								 "Opcion invalida, reingrese: ",1, 9);
+								 "Opcion invalida, reingrese: ",1, 11);
 
 
 			switch(option)
@@ -252,9 +267,72 @@ int main(void)
 					printf("No se puedo mostrar la lista de perritos...\n");
 				}
 				break;
+			case 9:
+				if(contadorClientesActivo>0)
+				{
+					auxEstadoPosicionVacioPerro=Perritos_buscarEspacioLibrePerrito(listaPerritos, largoPerritos);
+					if(auxEstadoPosicionVacioPerro!=-1)
+					{
+						pedirCadena(auxPerrito.nombre, "Ingrese el nombre del perrito: ", "Error. Ingrese el nombre del perrito:", cantidadCharsPerritos);
+						pedirCadena(auxPerrito.raza, "Ingrese la raza del perrito: ", "Error. Ingrese la raza del perrito: ", cantidadCharsPerritos);
+						ingresoEntero(&auxPerrito.edad, "Ingrese la edad del perrito: ", "Error. Ingrese la edad del perrito: ", minEdadPerrito, maxEdadPerrito);
+						auxPerrito.id=contadorIdPerritos;
+						printf("\n");
+						Perritos_agregarPerrito(listaPerritos, largoPerritos, auxPerrito.id, auxPerrito.nombre, auxPerrito.raza, auxPerrito.edad);
+						contadorIdPerritos++;
+						contadorPerritosActivo++;
+
+						printf("------------------------------------------------------------------------------------------------------------------\n");
+						Perritos_imprimirPerritos(listaPerritos, largoPerritos);
+						printf("------------------------------------------------------------------------------------------------------------------\n");
+
+						pedirCaracter(&afirmacion,"\n\nPresione S para agregar el perrito ingresado: ");
+						if(afirmacion=='s' || afirmacion=='S')
+						{
+							printf("El nuevo perrito fue agregado....\n");
+							getchar();
+						}
+						else
+						{
+							printf("Se ha producido un error...\n");
+						}
+					}
+					else
+					{
+						printf("El sistema esta lleno vuelva en otras instancias\n");
+					}
+					printf("Presione un boton para continuar...\n");
+					getchar();
+				}
+				else
+				{
+					printf("No se puedo mostrar la lista de perritos...\n");
+				}
+				break;
+			case 10:
+				if(contadorClientesActivo>0)
+				{
+					EstadiaDiaria_cantidadDuenioSellamanAlanYTieneEstadia(listaClientesEstadia, listaDuenio, largoListaClientes, largoDuenio, &contadorAlan);
+					printf("La cantidad de personas que se llaman ALan es: %d\n", contadorAlan);
+				}
+				else
+				{
+					printf("No se puedo mostrar la lista de perritos...\n");
+				}
+				break;
+			case 11:
+				if(contadorClientesActivo>0)
+				{
+					EstadiaDiaria_ListadoEstadiasRealizadasLLamadaLuciaYFechaSegundaQuiencenaNoviembre(listaClientesEstadia,  listaDuenio, largoListaClientes, listaDuenio, auxEstadia.fecha);
+				}
+				else
+				{
+					printf("No se puedo mostrar la lista de perritos...\n");
+				}
+				break;
 			}
 
-		}while(option!=9);
+		}while(option!=12);
 
 
 	return EXIT_SUCCESS;

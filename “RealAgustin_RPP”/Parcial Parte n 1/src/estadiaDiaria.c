@@ -172,6 +172,73 @@ int EstadiaDiaria_mostrarPerroMasEstadia(sEstadiaDiaria listaEstadia[], sPerrito
 
 	return retorno;
 }
+ int EstadiaDiaria_cantidadDuenioSellamanAlanYTieneEstadia(sEstadiaDiaria listaEstadias[],  sDuenio listaDunio[], int length , int lengthDuenio, int* auxContadorAlan)
+{
+	int retorno=-1;
+	*auxContadorAlan=0;
+
+
+	if(listaEstadias!=NULL && listaDunio!=NULL)
+	{
+		 for(int i=0;i<length;i++)
+		 {
+			if(listaEstadias[i].estadoEstadiaVacio==0)
+			{
+				if(listaDunio[i].estadoDuenio==0 && strcpy(listaDunio[i].nombre,"Alan"))
+				{
+					*auxContadorAlan+=1;
+				}
+			}
+			retorno=1;
+		}
+	}
+	return retorno;
+}
+ int EstadiaDiaria_ListadoEstadiasRealizadasLLamadaLuciaYFechaSegundaQuiencenaNoviembre(sEstadiaDiaria listaEstadias[],  sDuenio listaDunio[], int length , int lengthDuenio, sFecha fecha)
+ {
+	 int retorno =-1;
+	     int auxIdDuenio;
+	     sDuenio auxDuenio;
+	     int auxIndex;
+	     int auxDia=15;
+
+	     if(listaEstadias!=NULL  && listaDunio!=NULL)
+	     {
+	         for (int i=0;i<lengthDuenio;i++)
+	         {
+	             if(listaDunio[i].estadoDuenio==0 && strcpy(listaDunio[i].nombre,"Lucia") && (listaEstadias[i].fecha.anio==2021 &&  listaEstadias[i].fecha.mes==11 && listaEstadias[i].fecha.dia>=auxDia))
+	             {
+	                 printf("\n");
+	                 printf("-----------------------------------------------------------------------------------------------------------------\n");
+	                 auxIdDuenio=listaDunio[i].id;
+	                 Duenio_MostrarDatos();
+	                 Duenio_mostrarUno(listaDunio[i]);
+	                 printf("\n");
+
+	                 for(int j=0; j<length; j++)
+	                 {
+	                     if(listaEstadias[j].estadoEstadiaVacio==0 && listaEstadias[j].idDuenio==auxIdDuenio)
+	                     {
+	                       printf("Fecha de estadia :");
+	                       Fecha_imprimirFecha(listaEstadias[j].fecha);
+	                       printf("    |Id Duenio: %d", listaEstadias[i].idDuenio);
+
+	                       auxIndex=Duenio_buscarPorId(listaDunio, lengthDuenio, listaEstadias[j].idDuenio);
+	                       auxDuenio=listaDunio[auxIndex];
+	                       printf("    | nombre Duenio: %s", auxDuenio.nombre);
+	                       printf("    | numero de contacto: %d\n", auxDuenio.telefono);
+
+	                     }
+	                 retorno=1;
+	                 }
+
+	             }
+	         }
+	     }
+	     return retorno;
+
+	 return retorno;
+ }
 int EstadiaDiaria_mostrarTodasEstadiasPorPerro(sEstadiaDiaria listEstadias[], sPerritos listaPerro[], sDuenio listaDunio[], int length ,int lengthPerro, int lengthDuenio)
 {
 
@@ -217,10 +284,8 @@ int EstadiaDiaria_mostrarTodasEstadiasPorPerro(sEstadiaDiaria listEstadias[], sP
 }
 void EstadiaDiaria_mostrarUnaEstadia(sEstadiaDiaria estadia, sDuenio duenio)
 {
-
 	printf("%-10d %-15d %-20s %-20d  %-20d  %d-%d-%d \n", estadia.id, estadia.idDuenio, duenio.nombre, duenio.telefono, estadia.idPerro, estadia.fecha.dia, estadia.fecha.mes, estadia.fecha.anio);
 }
-
 int EstadiaDiaria_imprimirListaEstadiaDiaria(sEstadiaDiaria listaEstadia[], sDuenio listaDuenio[], int length, int lenDuenio)
 {
 	int retorno=-1;
@@ -242,9 +307,7 @@ int EstadiaDiaria_imprimirListaEstadiaDiaria(sEstadiaDiaria listaEstadia[], sDue
 		printf("\n");
 	 retorno=1;
 	}
-
 	return retorno;
-
 }
 int ConfirmarSioNoEstadiaDiaria(char* mensaje)
 {
